@@ -15,14 +15,15 @@ const getQuote = async (req, res, next) => {
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
+  res.quote = quote;
+  next();
 };
-res.quote = quote;
-next();
 
 // GET all quotes
-router.get("/", getQuote, (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    res.json(res.quote);
+    const quotes = await Quote.find();
+    res.json(quotes);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -34,12 +35,30 @@ router.get("/:id", getQuote, async (req, res) => {
 });
 
 //create a quote
+router.post("/", async (req, res) => {
+  const quote = new Quote({
+    character: req.body.character,
+    anime: req.body.anime,
+    quote: req.body.quote,
+  });
+  try {
+    const newQuote = await quote.save();
+    res.status(201).json(newQuote);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+//update a quote
 router.patch("/:id", getQuote, async (req, res) => {
   if (req.body.quote != null) {
     res.quote.quote = req.body.quote;
   }
   if (req.body.anime != null) {
     res.quote.anime = req.body.anime;
+  }
+  if (req.body.character != null) {
+    res.quote.character = req.body.character;
   }
   try {
     const updatedQuote = await res.quote.save();

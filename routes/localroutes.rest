@@ -1,0 +1,28 @@
+POST http://localhost:3000/quotes
+Content-Type: application/json
+
+{
+    "quote": "I'm not a monster. I'm just ahead of the curve.",
+    "anime": "Monster",
+    "character": "Ken Kaneki"
+}
+
+###
+# Get all quotes
+GET http://localhost:3000/quotes
+###
+# Get a quote by id
+GET http://localhost:3000/quotes/69337a43700d6103550f1ce9
+
+###
+# Update a quote
+PATCH  http://localhost:3000/quotes/69337a43700d6103550f1ce9
+Content-Type: application/json
+
+{
+    "quote": "I want strength!",
+    "anime": "Solo Leveling",
+    "character": "Sung Jinwoo"
+}
+###
+# Delete a quote
