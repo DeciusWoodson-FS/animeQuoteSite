@@ -21,4 +21,11 @@ app.use(cors());
 app.use(express.json());
 app.use("/quotes", quoteRouter);
 
+// Serve static files from the React app build directory
+app.use(express.static(path.join(__dirname, "../reactjs/build")));
+
+app.get(/("*")/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../reactjs/build/index.html"));
+});
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
