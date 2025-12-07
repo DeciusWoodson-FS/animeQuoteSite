@@ -6,13 +6,13 @@
   },
   "scripts": {
     "install-reactjs": "npm install --prefix reactjs",
-    "install-api": "npm install --prefix api",
+    "install-api": "npm install --prefix animeApi",
     "build-reactjs": "npm run build --prefix reactjs",
     "heroku-postbuild": "npm run install-reactjs && npm run install-api && npm run build-reactjs",
-    "start": "npm start --prefix api",
+    "start": "npm start --prefix animeApi",
     "dev:react": "concurrently --raw \"npm run api\" \"npm run react\"",
     "react": "cd reactjs && npm run start",
-    "api": "cd api && nodemon server.js"
+    "api": "cd animeApi && nodemon server.js"
   },
   "dependencies": {
     "concurrently": "^9.2.1",
