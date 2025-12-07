@@ -1,6 +1,82 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
+import styled from "styled-components";
+
+//
+// Styling for title
+const StyledH1 = styled.h1`
+  color: #6200ee;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+`;
+
+// Styling for link back to home
+
+const StyledLink = styled(Link)`
+  background: #121212;
+  border-radius: 50px;
+  border: 1px solid #333;
+  color: #6200ee;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 2rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.2s ease-in-out;
+  align-self: flex-center;
+  margin-top: 1rem;
+  width: 200px;
+  &:hover {
+    filter: brightness(1.5);
+  }
+`;
+
+// Top side styling for the page
+// Styling for form
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #121212;
+  padding: 2rem;
+  border-radius: 50px;
+  border: 1px solid #333;
+`;
+
+// Styling for input fields
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 50px;
+  border: 1px solid #333;
+  background: #292929;
+  color: #ffffff;
+`;
+
+// Styling for labels
+const StyledLabel = styled.label`
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+`;
+
+// Styling for submit button
+const StyledButton = styled.button`
+  background: #121212;
+  border-radius: 50px;
+  border: 1px solid #333;
+  color: #ffffff;
+`;
 
 function Quotes() {
   const [quotes, setQuotes] = useState([]);
@@ -139,52 +215,53 @@ function Quotes() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Your Anime Quotes</h1>
-        <Link to="/">Home</Link>
+        <StyledH1>Your Anime Quotes</StyledH1>
+        <StyledLink to="/">Home</StyledLink>
 
-        <form onSubmit={handleSubmit}>
+        <StyledForm onSubmit={handleSubmit}>
           <h2>{editingId ? "Edit Quote" : "Create New Quote"}</h2>
-          <label>
+          <StyledLabel>
             Character:
-            <input
+            <StyledInput
               type="text"
               name="character"
               value={values.character}
               onChange={handleInputChanges}
               required
             />
-          </label>
-          <label>
+          </StyledLabel>
+          <StyledLabel>
             Anime:
-            <input
+            <StyledInput
               type="text"
               name="anime"
               value={values.anime}
               onChange={handleInputChanges}
               required
             />
-          </label>
-          <label>
+          </StyledLabel>
+          <StyledLabel>
             Quote:
-            <textarea
+            <StyledInput
+              type="text"
               name="quote"
               value={values.quote}
               onChange={handleInputChanges}
               required
             />
-          </label>
+          </StyledLabel>
           <div>
-            <input
+            <StyledInput
               type="submit"
               value={editingId ? "Update Quote" : "Create Quote"}
             />
             {editingId && (
-              <button type="button" onClick={cancelEdit}>
+              <StyledButton type="button" onClick={cancelEdit}>
                 Cancel
-              </button>
+              </StyledButton>
             )}
           </div>
-        </form>
+        </StyledForm>
 
         <div>
           <h2>All Quotes</h2>
