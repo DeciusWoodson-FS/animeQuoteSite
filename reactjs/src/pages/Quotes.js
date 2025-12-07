@@ -76,6 +76,22 @@ const StyledButton = styled.button`
   border-radius: 50px;
   border: 1px solid #333;
   color: #ffffff;
+  font-size: 1.3rem;
+`;
+
+// Styling for unordered list(all quotes)
+const StyledUl = styled.ul`
+  background: #121212;
+  border-radius: 50px;
+  border: 1px solid #333;
+  padding: 5rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0 auto;
 `;
 
 function Quotes() {
@@ -231,7 +247,7 @@ function Quotes() {
             />
           </StyledLabel>
           <StyledLabel>
-            Anime:
+            Anime/Game:
             <StyledInput
               type="text"
               name="anime"
@@ -268,17 +284,24 @@ function Quotes() {
           {quotes.length === 0 ? (
             <p>No quotes found. Add some quotes!</p>
           ) : (
-            <ul>
+            <StyledUl>
               {quotes.map((quote) => (
                 <li key={quote._id}>
                   <h3>{quote.character}</h3>
                   <p>"{quote.quote}"</p>
                   <p>From: {quote.anime}</p>
-                  <button onClick={() => startEdit(quote)}>Edit</button>
-                  <button onClick={() => deleteQuote(quote._id)}>Delete</button>
+                  <StyledButton type="button" onClick={() => startEdit(quote)}>
+                    Edit
+                  </StyledButton>
+                  <StyledButton
+                    type="button"
+                    onClick={() => deleteQuote(quote._id)}
+                  >
+                    Delete
+                  </StyledButton>
                 </li>
               ))}
-            </ul>
+            </StyledUl>
           )}
         </div>
       </header>

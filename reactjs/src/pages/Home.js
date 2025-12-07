@@ -12,6 +12,14 @@ const StyledH1 = styled.h1`
   text-align: center;
 `;
 
+//Styling for subtitle
+const StyledH2 = styled.h2`
+  color: #6200ee;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 1.3rem;
+`;
+
 //Styling for link button leading to quotes
 const StyledLink = styled(Link)`
   background: #121212;
@@ -37,8 +45,9 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <StyledH1>Anime Quote Home</StyledH1>
-        <StyledLink to="/quotes">Your Anime Quotes</StyledLink>
+        <StyledH1>Anime and Game Quotes</StyledH1>
+        <StyledH2>Add your favorite Anime and Game quotes!</StyledH2>
+        <StyledLink to="/quotes">Your Quotes</StyledLink>
       </header>
     </div>
   );
